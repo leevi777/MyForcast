@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="5dp"
+    android:paddingBottom="5dp"
+    android:background="#44000000">
+
+    <LinearLayout
+        android:id="@+id/suggest_item1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/comf"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/brf1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="较冷"
+                android:textColor="#aaaaaa"/>
+            <TextView
+                android:id="@+id/dress_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="建议穿毛衣"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerPadding="1dp">
+
+            <LinearLayout
+                android:id="@+id/suggest_item2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="7dp"
+                android:background="@drawable/frame"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/dress"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="穿衣指数"
+                    android:textColor="#aaaaaa" />
+                <TextView
+                    android:id="@+id/brf2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="舒适"
+                    android:textColor="@android:color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/suggest_item3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="7dp"
+                android:background="@drawable/frame"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/flu"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="感冒指数"
+                    android:textColor="#aaaaaa" />
+                <TextView
+                    android:id="@+id/brf3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="易发"
+                    android:textColor="@android:color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/suggest_item4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="7dp"
+                android:background="@drawable/frame"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/sport"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运动指数"
+                    android:textColor="#aaaaaa" />
+                <TextView
+                    android:id="@+id/brf4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="适宜"
+                    android:textColor="@android:color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/suggest_item5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="7dp"
+                android:background="@drawable/frame"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/travel"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="旅游指数"
+                    android:textColor="#aaaaaa" />
+                <TextView
+                    android:id="@+id/brf5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="适宜"
+                    android:textColor="@android:color/white"/>
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerPadding="1dp">
+
+            <LinearLayout
+                android:id="@+id/suggest_item6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="7dp"
+                android:background="@drawable/frame"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/uv"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="紫外线指数"
+                    android:textColor="#aaaaaa" />
+                <TextView
+                    android:id="@+id/brf6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="适宜"
+                    android:textColor="@android:color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/suggest_item7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="7dp"
+                android:background="@drawable/frame"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/car_wash"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="洗车指数"
+                    android:textColor="#aaaaaa" />
+                <TextView
+                    android:id="@+id/brf7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="适宜"
+                    android:textColor="@android:color/white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            </LinearLayout>
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>
