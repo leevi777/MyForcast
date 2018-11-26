@@ -91,9 +91,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 int time = Integer.valueOf(weatherList.get(0).update.updateTime.split(" ")[1].split(":")[0]);
                 setImg(((HeaderHolder) holder).icon, weatherList.get(0).now.info);
                 if (time > 6 && time <18) {
+                    ((HeaderHolder) holder).brf1.setText(weatherList.get(0).forecastList.get(1).dayInfo);
+                    ((HeaderHolder) holder).brf2.setText(weatherList.get(0).forecastList.get(2).dayInfo);
                     setImg(((HeaderHolder) holder).icon1, weatherList.get(0).forecastList.get(1).dayInfo);
                     setImg(((HeaderHolder) holder).icon2, weatherList.get(0).forecastList.get(2).dayInfo);
                 }else {
+                    ((HeaderHolder) holder).brf1.setText(weatherList.get(0).forecastList.get(1).nightInfo);
+                    ((HeaderHolder) holder).brf2.setText(weatherList.get(0).forecastList.get(2).nightInfo);
                     setImg(((HeaderHolder) holder).icon1, weatherList.get(0).forecastList.get(1).nightInfo);
                     setImg(((HeaderHolder) holder).icon2, weatherList.get(0).forecastList.get(2).nightInfo);
                 }
