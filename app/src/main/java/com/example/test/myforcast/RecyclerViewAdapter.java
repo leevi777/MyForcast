@@ -123,6 +123,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
                     holder.week_weather.setText(weekWeatherList.get(0).data.yesterday.type);
                     holder.week_wind_dir.setText(weekWeatherList.get(0).data.yesterday.wind_dir);
                     holder.week_weather.setText(weekWeatherList.get(0).data.yesterday.type);
+                    setImg(holder.week_img,weekWeatherList.get(0).data.yesterday.type);
                 } else if (position == 3) {
                     holder.week_day.setText("今天");
                     holder.week_weather.setText(weekWeatherList.get(0).data.forecastList.get(position - 3).type);
@@ -130,6 +131,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
                     holder.week_temp.setText(weekWeatherList.get(0).data.forecastList.get(position).temp_min.split(" ")[1] + "~"
                             + weekWeatherList.get(0).data.forecastList.get(position).temp_max.split(" ")[1]);
                     holder.week_wind_dir.setText(weekWeatherList.get(0).data.forecastList.get(position - 3).wind_dir);
+                    setImg(holder.week_img,weekWeatherList.get(0).data.forecastList.get(position-3).type);
                 } else if (position < 8) {
                     setImg(holder.week_img,weekWeatherList.get(0).data.forecastList.get(position-3).type);
                     holder.week_day.setText(weekWeatherList.get(0).data.forecastList.get(position - 3).date.split("日")[1]);
