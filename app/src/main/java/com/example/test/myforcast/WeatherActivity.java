@@ -25,9 +25,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.test.myforcast.gson.HeWeather;
 import com.example.test.myforcast.gson.WeekWeather;
 import com.example.test.myforcast.service.UpdateService;
@@ -78,6 +75,14 @@ public class WeatherActivity extends AppCompatActivity {
 
     private final int REQUEST_IMG_SUCCESS = 1;
 
+    private HeWeather.Weather return_weather;
+
+    private WeekWeather return_weekWeather;
+
+    private String return_weatherStr;
+
+    private String return_weekWeatherStr;
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -86,9 +91,21 @@ public class WeatherActivity extends AppCompatActivity {
                     if (flag1 && flag2) {
                         flag1 = false;
                         flag2 = false;
+                        SharedPreferences.Editor editor = PreferenceManager
+                                    .getDefaultSharedPreferences(WeatherActivity.this).edit();
+                        editor.putString("weather", return_weatherStr);
+                        editor.putString("weather_name", return_weather.basic.cityName);
+                        editor.putString("weekWeather", return_weekWeatherStr);
+                        editor.apply();
+                        weatherList.clear();
+                        weatherList.add(return_weather);
+                        weekWeatherList.clear();
+                        weekWeatherList.add(return_weekWeather);
                         adapter.notifyDataSetChanged();
                         title.setText(weatherList.get(0).basic.cityName);
                         swipeRefresh.setRefreshing(false);
+                        Intent intent = new Intent(WeatherActivity.this, UpdateService.class);
+                        startService(intent);
                     }
                     break;
                 case REQUEST_IMG_SUCCESS:
@@ -162,11 +179,12 @@ public class WeatherActivity extends AppCompatActivity {
         });
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        final String weatherString = prefs.getString("weather", null);
-        final String weekWeatherString = prefs.getString("weekWeather", null);
+        String weatherString = prefs.getString("weather", null);
+        String weekWeatherString = prefs.getString("weekWeather", null);
         if (weatherString != null & weekWeatherString != null) {
             HeWeather.Weather weather = Utility.handleWeatherResponse(weatherString);
             WeekWeather weekWeather = Utility.handleWeekWeatherResponse(weekWeatherString);
+            Log.i("TAG", weatherString+"\n"+weekWeatherString);
             weatherList.add(weather);
             weekWeatherList.add(weekWeather);
             title.setText(weather.basic.cityName);
@@ -253,15 +271,21 @@ public class WeatherActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (weather != null && "ok".equals(weather.status)) {
-                            SharedPreferences.Editor editor = PreferenceManager
-                                    .getDefaultSharedPreferences(WeatherActivity.this).edit();
-                            editor.putString("weather", responseText);
-                            editor.putString("weather_name", weather.basic.cityName);
-                            editor.apply();
+//                            SharedPreferences.Editor editor = PreferenceManager
+//                                    .getDefaultSharedPreferences(WeatherActivity.this).edit();
+//                            editor.putString("weather", responseText);
+//                            editor.putString("weather_name", weather.basic.cityName);
+//                            editor.apply();
+                            return_weatherStr = responseText;
                             flag1 = true;
-                            weatherList.clear();
-                            weatherList.add(weather);
-                            handler.sendEmptyMessage(REQUEST_WEATHER_SUCCESS);
+                            Message msg = new Message();
+                            msg.obj = responseText;
+                            msg.what = REQUEST_WEATHER_SUCCESS;
+                            return_weather = weather;
+                            handler.sendMessage(msg);
+//                            weatherList.clear();
+//                            weatherList.add(weather);
+//                            handler.sendEmptyMessage(REQUEST_WEATHER_SUCCESS);
                         } else {
                             Toast.makeText(WeatherActivity.this, "获取天气信息失败", Toast.LENGTH_SHORT).show();
                             swipeRefresh.setRefreshing(false);
@@ -292,20 +316,24 @@ public class WeatherActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                String gson = response.body().string();
-                Log.i("TAG", gson);
-                WeekWeather weekWeather = Utility.handleWeekWeatherResponse(gson);
+                String responseText = response.body().string();
+                Log.i("TAG", responseText);
+                WeekWeather weekWeather = Utility.handleWeekWeatherResponse(responseText);
                 if (weekWeather.code.equals("200") && weekWeather != null) {
-                    SharedPreferences.Editor editor = PreferenceManager
-                            .getDefaultSharedPreferences(WeatherActivity.this).edit();
-                    editor.putString("weekWeather", gson);
-                    editor.apply();
+//                    SharedPreferences.Editor editor = PreferenceManager
+//                            .getDefaultSharedPreferences(WeatherActivity.this).edit();
+//                    editor.putString("weekWeather", responseText);
+//                    editor.apply();
+                    return_weekWeatherStr = responseText;
                     flag2 = true;
-                    weekWeatherList.clear();
-                    weekWeatherList.add(weekWeather);
-                    handler.sendEmptyMessage(REQUEST_WEATHER_SUCCESS);
-                    Intent intent = new Intent(WeatherActivity.this, UpdateService.class);
-                    startService(intent);
+                    Message msg = new Message();
+                    msg.obj = responseText;
+                    msg.what = REQUEST_WEATHER_SUCCESS;
+                    return_weekWeather = weekWeather;
+                    handler.sendMessage(msg);
+//                    weekWeatherList.clear();
+//                    weekWeatherList.add(weekWeather);
+//                    handler.sendEmptyMessage(REQUEST_WEATHER_SUCCESS);
                 } else {
                     runOnUiThread(new Runnable() {
                         @Override
