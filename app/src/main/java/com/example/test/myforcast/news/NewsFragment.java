@@ -128,6 +128,7 @@ public class NewsFragment extends Fragment {
     private boolean getCache(String type){
         if (ifRefresh)
             return false;
+        Log.i("TAG", "=========拿取缓存数据=======");
         String data = PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getString(type,null);
         if (data !=null){
@@ -168,7 +169,12 @@ public class NewsFragment extends Fragment {
                 Log.i("TAG", gson);
                 News news = Utility.handleNewsResponse(gson);
                 if (news.code == 0 && news != null) {
-                    dataList = news.result.dataList;
+                    if (dataList.size() >0){
+                        dataList.clear();
+                        dataList.addAll(news.result.dataList);
+                    }else {
+                        dataList = news.result.dataList;
+                    }
                     for (News.Data data : dataList){
                         Log.i("TAG","标题："+data.title+"\n"+data.author_name+"\n"+data.url+"\n"+data
                                 .img1_url+ "\n"+data.img2_url+"\n"+data.img3_url);
@@ -177,8 +183,10 @@ public class NewsFragment extends Fragment {
                         @Override
                         public void run() {
                             if (ifRefresh){
+                                Log.i("TAG", "通知适配器改变数据");
                                 adapter.notifyDataSetChanged();
                             }else {
+                                Log.i("TAG", "设置请求的数据");
                                 setData();
                             }
                             ifRefresh = false;

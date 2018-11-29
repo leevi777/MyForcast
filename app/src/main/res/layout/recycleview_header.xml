@@ -52,18 +52,6 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/update"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/linearLayout"
-                android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/linearLayout"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="更新于"
-                android:textColor="#ffffff" />
-
         </RelativeLayout>
 
 
@@ -100,6 +88,14 @@
                 android:text="西北风"
                 android:textColor="#ffffff"/>
 
+            <TextView
+                android:id="@+id/update"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="更新于"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
         <TextView
