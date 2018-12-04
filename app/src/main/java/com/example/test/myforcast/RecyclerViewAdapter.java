@@ -256,9 +256,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyViewHolder> {
             tv.setBackgroundResource(R.drawable.air3);
         } else if (type.equals("较差")) {
             tv.setBackgroundResource(R.drawable.air4);
-        } else if (type.equals("重")) {
+        } else if (type.equals("很差")) {
             tv.setBackgroundResource(R.drawable.air5);
-        } else if (type.equals("严重")) {
+        } else if (type.equals("非常差")) {
             tv.setBackgroundResource(R.drawable.air6);
         }
     }
